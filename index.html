@@ -1,161 +1,484 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CrumbSuite</title>
-<style>
-body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#fff8ee;
-color:#25150b;
-}
-header{
-background:#0b5bd3;
-padding:20px;
-color:white;
-display:flex;
-align-items:center;
-gap:15px;
-}
-header img{
-width:70px;
-height:70px;
-border-radius:20px;
-}
-.hero{
-padding:80px 20px;
-text-align:center;
-}
-.hero h1{
-font-size:56px;
-margin-bottom:20px;
-}
-.hero p{
-font-size:20px;
-max-width:800px;
-margin:auto;
-line-height:1.6;
-color:#684628;
-}
-.btn{
-display:inline-block;
-margin-top:30px;
-padding:16px 32px;
-background:#0b5bd3;
-color:white;
-text-decoration:none;
-border-radius:40px;
-font-weight:bold;
-}
-.features{
-padding:60px 20px;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-max-width:1200px;
-margin:auto;
-}
-.card{
-background:white;
-padding:30px;
-border-radius:24px;
-box-shadow:0 10px 30px rgba(0,0,0,0.08);
-}
-.gallery{
-padding:60px 20px;
-background:#25150b;
-color:white;
-text-align:center;
-}
-.gallery-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-max-width:1100px;
-margin:40px auto 0;
-}
-.gallery-item{
-background:#352014;
-padding:30px;
-border-radius:24px;
-}
-footer{
-padding:30px;
-text-align:center;
-background:#0f0f0f;
-color:white;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CrumbSuite – Bakery Management, Simplified</title>
+  <meta name="description" content="CrumbSuite is the all-in-one bakery management app for modern bakers. Manage orders, products, inventory, clients and more — right from your phone." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<header>
-<img src="https://raw.githubusercontent.com/github/explore/main/topics/github/github.png">
-<div>
-<h2 style="margin:0;">CrumbSuite</h2>
-<p style="margin:4px 0 0;">Bakery Business Manager</p>
-</div>
-</header>
+  <!-- ──────────────────────────────────────────
+       NAV
+  ────────────────────────────────────────── -->
+  <header class="nav">
+    <div class="container nav__inner">
+      <a href="#" class="nav__logo">
+        <span class="logo-icon">🥐</span>
+        <span class="logo-text">CrumbSuite</span>
+      </a>
+      <nav class="nav__links">
+        <a href="#features">Features</a>
+        <a href="#how">How It Works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a href="#download" class="btn btn--primary nav__cta">Get the App</a>
+      <button class="nav__burger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
 
-<section class="hero">
-<h1>Manage Your Sweet Business</h1>
-<p>
-CrumbSuite helps bakeries and dessert businesses manage orders,
-payments, preparation tracking, delivery status, and customers in one place.
-</p>
+  <!-- Mobile drawer -->
+  <div class="drawer" id="drawer">
+    <a href="#features" class="drawer__link">Features</a>
+    <a href="#how" class="drawer__link">How It Works</a>
+    <a href="#pricing" class="drawer__link">Pricing</a>
+    <a href="#contact" class="drawer__link">Contact</a>
+    <a href="#download" class="btn btn--primary drawer__cta">Get the App</a>
+  </div>
 
-<a class="btn" href="#">Get Started</a>
-</section>
+  <!-- ──────────────────────────────────────────
+       HERO
+  ────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero__bg-shapes">
+      <div class="shape shape--1"></div>
+      <div class="shape shape--2"></div>
+      <div class="shape shape--3"></div>
+    </div>
+    <div class="container hero__inner">
+      <div class="hero__text">
+        <div class="badge">🚀 Now in Beta</div>
+        <h1 class="hero__headline">
+          Run Your Bakery<br/>
+          <span class="gradient-text">Like a Pro</span>
+        </h1>
+        <p class="hero__sub">
+          CrumbSuite is the all-in-one Android app built for bakers and pastry
+          businesses. Manage orders, track inventory, handle clients and
+          grow your bakery — all from your pocket.
+        </p>
+        <div class="hero__actions">
+          <a href="#download" class="btn btn--primary btn--lg">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.523 15.341 13 18.196V5.804l4.523 2.855a1 1 0 0 1 0 1.682v5M5 5l6 3.804v6.392L5 19V5zm0-2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2l8-5.243 6.405 4.047A2 2 0 0 0 22 18V6a2 2 0 0 0-2-2l-6.405 4.047L5 3z"/></svg>
+            Download on Android
+          </a>
+          <a href="#features" class="btn btn--ghost btn--lg">See Features ↓</a>
+        </div>
+        <div class="hero__stats">
+          <div class="stat"><span class="stat__num">5+</span><span class="stat__label">Core Modules</span></div>
+          <div class="stat__divider"></div>
+          <div class="stat"><span class="stat__num">100%</span><span class="stat__label">Offline Ready</span></div>
+          <div class="stat__divider"></div>
+          <div class="stat"><span class="stat__num">Free</span><span class="stat__label">to Start</span></div>
+        </div>
+      </div>
+      <div class="hero__mockup">
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="mock-ui">
+              <div class="mock-header">
+                <div class="mock-avatar"></div>
+                <div>
+                  <div class="mock-line mock-line--sm"></div>
+                  <div class="mock-line mock-line--xs"></div>
+                </div>
+              </div>
+              <div class="mock-stats-row">
+                <div class="mock-stat-card mock-stat-card--orange">
+                  <div class="mock-line mock-line--xs"></div>
+                  <div class="mock-line mock-line--lg"></div>
+                </div>
+                <div class="mock-stat-card mock-stat-card--green">
+                  <div class="mock-line mock-line--xs"></div>
+                  <div class="mock-line mock-line--lg"></div>
+                </div>
+              </div>
+              <div class="mock-chart">
+                <div class="mock-bar" style="height:60%"></div>
+                <div class="mock-bar" style="height:80%"></div>
+                <div class="mock-bar" style="height:45%"></div>
+                <div class="mock-bar" style="height:90%"></div>
+                <div class="mock-bar" style="height:70%"></div>
+                <div class="mock-bar" style="height:55%"></div>
+                <div class="mock-bar mock-bar--active" style="height:95%"></div>
+              </div>
+              <div class="mock-list">
+                <div class="mock-list-item">
+                  <div class="mock-dot mock-dot--green"></div>
+                  <div class="mock-line mock-line--md"></div>
+                  <div class="mock-chip">Paid</div>
+                </div>
+                <div class="mock-list-item">
+                  <div class="mock-dot mock-dot--orange"></div>
+                  <div class="mock-line mock-line--sm"></div>
+                  <div class="mock-chip mock-chip--orange">Pending</div>
+                </div>
+                <div class="mock-list-item">
+                  <div class="mock-dot mock-dot--green"></div>
+                  <div class="mock-line mock-line--lg"></div>
+                  <div class="mock-chip">Paid</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Floating badges -->
+        <div class="float-badge float-badge--1">
+          <span class="float-icon">📦</span>
+          <div>
+            <div class="float-title">Stock Alert</div>
+            <div class="float-sub">Flour running low</div>
+          </div>
+        </div>
+        <div class="float-badge float-badge--2">
+          <span class="float-icon">✅</span>
+          <div>
+            <div class="float-title">Order #047</div>
+            <div class="float-sub">Delivered · ₹2,400</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section class="features">
-<div class="card">
-<h3>🍫 Brownie Orders</h3>
-<p>Track brownie boxes, slabs, and custom packs.</p>
-</div>
+  <!-- ──────────────────────────────────────────
+       SOCIAL PROOF
+  ────────────────────────────────────────── -->
+  <section class="trust">
+    <div class="container">
+      <p class="trust__label">Trusted by bakery owners who mean business</p>
+      <div class="trust__logos">
+        <span class="trust__item">🥐 Artisan Breads Co.</span>
+        <span class="trust__item">🎂 Sweet Layers</span>
+        <span class="trust__item">🍰 The Patisserie</span>
+        <span class="trust__item">🧁 Cupcake Studio</span>
+        <span class="trust__item">🍞 Daily Loaf</span>
+      </div>
+    </div>
+  </section>
 
-<div class="card">
-<h3>🎂 Cake Management</h3>
-<p>Handle flavours, themes, quantities, and delivery schedules.</p>
-</div>
+  <!-- ──────────────────────────────────────────
+       FEATURES
+  ────────────────────────────────────────── -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge badge--dark">Features</div>
+        <h2 class="section-title">Everything Your Bakery Needs</h2>
+        <p class="section-sub">From the first order of the day to the final summary at night, CrumbSuite keeps every part of your business in sync.</p>
+      </div>
 
-<div class="card">
-<h3>📦 Preparation Tracking</h3>
-<p>Move items from Confirmed → Preparation → Ready → Delivered.</p>
-</div>
+      <div class="features__grid">
 
-<div class="card">
-<h3>📊 Sales Dashboard</h3>
-<p>Understand revenue, pending payments, and growth.</p>
-</div>
-</section>
+        <div class="feature-card feature-card--wide">
+          <div class="feature-card__icon" style="background:#FFF3E0;color:#E65100;">📋</div>
+          <h3>Orders & Clients</h3>
+          <p>Create and manage orders end-to-end — draft, confirmed, delivered. Track partial payments and follow up on pending balances with ease.</p>
+          <ul class="feature-list">
+            <li>Full order lifecycle management</li>
+            <li>Client profiles with history</li>
+            <li>Partial & full payment tracking</li>
+            <li>Reminders for upcoming deliveries</li>
+          </ul>
+        </div>
 
-<section class="gallery">
-<h2 style="font-size:42px;">Built for Bakers</h2>
+        <div class="feature-card">
+          <div class="feature-card__icon" style="background:#E8F5E9;color:#2E7D32;">🧁</div>
+          <h3>Product Catalog</h3>
+          <p>Organise your full range of baked goods with pricing, categories and beautiful product cards.</p>
+        </div>
 
-<div class="gallery-grid">
-<div class="gallery-item">
-<h3>🧁 Cupcakes</h3>
-<p>Manage flavours and bulk party orders.</p>
-</div>
+        <div class="feature-card">
+          <div class="feature-card__icon" style="background:#E3F2FD;color:#0D47A1;">📖</div>
+          <h3>Recipe Builder</h3>
+          <p>Build recipes with ingredient-level costing so you always know your margins before you bake.</p>
+        </div>
 
-<div class="gallery-item">
-<h3>🍪 Cookies</h3>
-<p>Track inventory and fresh batches.</p>
-</div>
+        <div class="feature-card">
+          <div class="feature-card__icon" style="background:#F3E5F5;color:#6A1B9A;">📦</div>
+          <h3>Inventory & Stock</h3>
+          <p>Track raw materials, get low-stock alerts and auto-deduct ingredients when production runs.</p>
+        </div>
 
-<div class="gallery-item">
-<h3>🍰 Custom Cakes</h3>
-<p>Organize theme cakes and customer notes.</p>
-</div>
-</div>
-</section>
+        <div class="feature-card">
+          <div class="feature-card__icon" style="background:#FCE4EC;color:#880E4F;">📊</div>
+          <h3>Reports & Insights</h3>
+          <p>Daily summaries, revenue charts and business KPIs at a glance — no spreadsheets required.</p>
+        </div>
 
-<footer>
-© 2026 CrumbSuite
-</footer>
+        <div class="feature-card feature-card--wide">
+          <div class="feature-card__icon" style="background:#E0F7FA;color:#006064;">👥</div>
+          <h3>Team & Roles</h3>
+          <p>Invite staff and admins to your bakery workspace. Role-based permissions ensure everyone sees only what they need to.</p>
+          <ul class="feature-list">
+            <li>Owner, Admin and Staff roles</li>
+            <li>Invite via email</li>
+            <li>Least-privilege access control</li>
+            <li>Member activity tracking</li>
+          </ul>
+        </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────────────────────
+       HOW IT WORKS
+  ────────────────────────────────────────── -->
+  <section class="how" id="how">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge badge--dark">How It Works</div>
+        <h2 class="section-title">Up and Running in Minutes</h2>
+        <p class="section-sub">No training required. CrumbSuite is designed to be picked up by any baker on day one.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step__num">01</div>
+          <div class="step__content">
+            <h3>Create Your Bakery</h3>
+            <p>Sign up, enter your bakery name and you're in. Your private workspace is set up instantly with no extra forms.</p>
+          </div>
+        </div>
+        <div class="step__connector"></div>
+        <div class="step">
+          <div class="step__num">02</div>
+          <div class="step__content">
+            <h3>Add Products & Recipes</h3>
+            <p>Build your product catalog and link each item to a recipe with costing — so you always bake at the right price.</p>
+          </div>
+        </div>
+        <div class="step__connector"></div>
+        <div class="step">
+          <div class="step__num">03</div>
+          <div class="step__content">
+            <h3>Take Orders & Get Paid</h3>
+            <p>Start taking orders, mark payments and track outstanding balances — all from one place on your phone.</p>
+          </div>
+        </div>
+        <div class="step__connector"></div>
+        <div class="step">
+          <div class="step__num">04</div>
+          <div class="step__content">
+            <h3>Review & Grow</h3>
+            <p>Check daily summaries, spot your best-sellers and use insights to make smarter decisions every day.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────────────────────
+       TESTIMONIALS
+  ────────────────────────────────────────── -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Bakers Love It</h2>
+      </div>
+      <div class="testimonials__grid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"CrumbSuite replaced three different apps I was juggling. Orders, stock, payments — it's all there, beautifully simple."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background:#FF8A65;">A</div>
+            <div>
+              <div class="author-name">Anika Sharma</div>
+              <div class="author-role">Owner, Sweet Layers Patisserie</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card testimonial-card--featured">
+          <div class="stars">★★★★★</div>
+          <p>"Finally an app that actually understands a bakery business. Knowing my cost before I bake has been a game-changer for margins."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background:#4DB6AC;">R</div>
+            <div>
+              <div class="author-name">Rajan Mehta</div>
+              <div class="author-role">Baker & Founder, Daily Loaf</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"My staff can now take orders without me hovering around. The role system is brilliant — they see exactly what they need."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background:#9575CD;">P</div>
+            <div>
+              <div class="author-name">Priya Nair</div>
+              <div class="author-role">Head Baker, The Cupcake Studio</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────────────────────
+       PRICING
+  ────────────────────────────────────────── -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge badge--dark">Pricing</div>
+        <h2 class="section-title">Simple, Honest Pricing</h2>
+        <p class="section-sub">Start free, upgrade when you're ready to scale.</p>
+      </div>
+      <div class="plans">
+        <div class="plan">
+          <div class="plan__name">Starter</div>
+          <div class="plan__price">Free</div>
+          <div class="plan__period">Forever</div>
+          <ul class="plan__features">
+            <li>✓ 1 bakery workspace</li>
+            <li>✓ Up to 3 team members</li>
+            <li>✓ Product & recipe catalog</li>
+            <li>✓ Order management</li>
+            <li>✓ Basic reporting</li>
+          </ul>
+          <a href="#download" class="btn btn--outline btn--block">Get Started Free</a>
+        </div>
+        <div class="plan plan--pro">
+          <div class="plan__badge">Most Popular</div>
+          <div class="plan__name">Pro</div>
+          <div class="plan__price">₹499<span>/mo</span></div>
+          <div class="plan__period">Billed monthly</div>
+          <ul class="plan__features">
+            <li>✓ Everything in Starter</li>
+            <li>✓ Unlimited team members</li>
+            <li>✓ Advanced inventory</li>
+            <li>✓ Full payment tracking</li>
+            <li>✓ Date-range reports</li>
+            <li>✓ Priority support</li>
+          </ul>
+          <a href="#download" class="btn btn--primary btn--block">Start Free Trial</a>
+        </div>
+        <div class="plan">
+          <div class="plan__name">Enterprise</div>
+          <div class="plan__price">Custom</div>
+          <div class="plan__period">Contact us</div>
+          <ul class="plan__features">
+            <li>✓ Everything in Pro</li>
+            <li>✓ Multi-location support</li>
+            <li>✓ Custom integrations</li>
+            <li>✓ Dedicated account manager</li>
+            <li>✓ SLA-backed support</li>
+          </ul>
+          <a href="#contact" class="btn btn--outline btn--block">Contact Sales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────────────────────
+       DOWNLOAD CTA
+  ────────────────────────────────────────── -->
+  <section class="download" id="download">
+    <div class="container">
+      <div class="download__inner">
+        <div class="download__emoji">🥐</div>
+        <h2>Ready to Bake Smarter?</h2>
+        <p>Join bakery owners who are running more organised, more profitable businesses with CrumbSuite.</p>
+        <div class="download__badges">
+          <a href="#" class="store-badge">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M17.523 15.341 13 18.196V5.804l4.523 2.855a1 1 0 0 1 0 1.682v5M5 5l6 3.804v6.392L5 19V5zm0-2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2l8-5.243 6.405 4.047A2 2 0 0 0 22 18V6a2 2 0 0 0-2-2l-6.405 4.047L5 3z"/></svg>
+            <div>
+              <div class="store-badge__sub">Get it on</div>
+              <div class="store-badge__name">Google Play</div>
+            </div>
+          </a>
+        </div>
+        <p class="download__note">Currently in beta. Join our early access list to get notified at launch.</p>
+        <form class="notify-form" id="notifyForm">
+          <input type="email" placeholder="your@email.com" required class="notify-input" />
+          <button type="submit" class="btn btn--primary">Notify Me</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────────────────────
+       CONTACT
+  ────────────────────────────────────────── -->
+  <section class="contact" id="contact">
+    <div class="container contact__inner">
+      <div class="contact__info">
+        <h2>Get in Touch</h2>
+        <p>Have a question, feature request or just want to say hi? We'd love to hear from you.</p>
+        <div class="contact__items">
+          <a href="mailto:hello@crumbsuite.app" class="contact__item">
+            <span>📧</span> hello@crumbsuite.app
+          </a>
+          <a href="#" class="contact__item">
+            <span>🐦</span> @CrumbSuiteApp
+          </a>
+        </div>
+      </div>
+      <form class="contact-form" id="contactForm">
+        <div class="form-group">
+          <input type="text" placeholder="Your Name" required class="form-input" />
+        </div>
+        <div class="form-group">
+          <input type="email" placeholder="Email Address" required class="form-input" />
+        </div>
+        <div class="form-group">
+          <textarea placeholder="Your message…" rows="5" required class="form-input"></textarea>
+        </div>
+        <button type="submit" class="btn btn--primary btn--block">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────────────────────
+       FOOTER
+  ────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="#" class="nav__logo">
+          <span class="logo-icon">🥐</span>
+          <span class="logo-text">CrumbSuite</span>
+        </a>
+        <p>Bakery management, simplified.<br/>Built with ❤️ for bakers who mean business.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4>Product</h4>
+          <a href="#features">Features</a>
+          <a href="#how">How It Works</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#download">Download</a>
+        </div>
+        <div class="footer__col">
+          <h4>Company</h4>
+          <a href="#">About</a>
+          <a href="#contact">Contact</a>
+          <a href="#">Blog</a>
+          <a href="#">Careers</a>
+        </div>
+        <div class="footer__col">
+          <h4>Legal</h4>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <p>© 2026 CrumbSuite. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
+
