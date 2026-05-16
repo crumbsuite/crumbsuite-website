@@ -18,7 +18,7 @@
   <header class="nav">
     <div class="container nav__inner">
       <a href="#" class="nav__logo">
-        <span class="logo-icon">🥐</span>
+        <img src="icon-round.png" alt="CrumbSuite app icon" class="logo-icon" />
         <span class="logo-text">CrumbSuite</span>
       </a>
       <nav class="nav__links">
@@ -72,12 +72,21 @@
           <a href="#features" class="btn btn--ghost btn--lg">See Features ↓</a>
         </div>
         <div class="hero__stats">
-          <div class="stat"><span class="stat__num">5+</span><span class="stat__label">Core Modules</span></div>
-          <div class="stat__divider"></div>
-          <div class="stat"><span class="stat__num">100%</span><span class="stat__label">Offline Ready</span></div>
-          <div class="stat__divider"></div>
-          <div class="stat"><span class="stat__num">Free</span><span class="stat__label">to Start</span></div>
-        </div>
+  <div class="stat">
+    <span class="stat__num">5+</span>
+    <span class="stat__label">Core Modules</span>
+  </div>
+  <div class="stat__divider"></div>
+  <div class="stat">
+    <span class="stat__num">Cloud</span>
+    <span class="stat__label">Synced Data</span>
+  </div>
+  <div class="stat__divider"></div>
+  <div class="stat">
+    <span class="stat__num">₹499</span>
+    <span class="stat__label">Per Month</span>
+  </div>
+</div>
       </div>
       <div class="hero__mockup">
         <div class="phone-frame">
@@ -325,57 +334,39 @@
        PRICING
   ────────────────────────────────────────── -->
   <section class="pricing" id="pricing">
-    <div class="container">
-      <div class="section-header">
-        <div class="badge badge--dark">Pricing</div>
-        <h2 class="section-title">Simple, Honest Pricing</h2>
-        <p class="section-sub">Start free, upgrade when you're ready to scale.</p>
-      </div>
-      <div class="plans">
-        <div class="plan">
-          <div class="plan__name">Starter</div>
-          <div class="plan__price">Free</div>
-          <div class="plan__period">Forever</div>
-          <ul class="plan__features">
-            <li>✓ 1 bakery workspace</li>
-            <li>✓ Up to 3 team members</li>
-            <li>✓ Product & recipe catalog</li>
-            <li>✓ Order management</li>
-            <li>✓ Basic reporting</li>
-          </ul>
-          <a href="#download" class="btn btn--outline btn--block">Get Started Free</a>
-        </div>
-        <div class="plan plan--pro">
-          <div class="plan__badge">Most Popular</div>
-          <div class="plan__name">Pro</div>
-          <div class="plan__price">₹499<span>/mo</span></div>
-          <div class="plan__period">Billed monthly</div>
-          <ul class="plan__features">
-            <li>✓ Everything in Starter</li>
-            <li>✓ Unlimited team members</li>
-            <li>✓ Advanced inventory</li>
-            <li>✓ Full payment tracking</li>
-            <li>✓ Date-range reports</li>
-            <li>✓ Priority support</li>
-          </ul>
-          <a href="#download" class="btn btn--primary btn--block">Start Free Trial</a>
-        </div>
-        <div class="plan">
-          <div class="plan__name">Enterprise</div>
-          <div class="plan__price">Custom</div>
-          <div class="plan__period">Contact us</div>
-          <ul class="plan__features">
-            <li>✓ Everything in Pro</li>
-            <li>✓ Multi-location support</li>
-            <li>✓ Custom integrations</li>
-            <li>✓ Dedicated account manager</li>
-            <li>✓ SLA-backed support</li>
-          </ul>
-          <a href="#contact" class="btn btn--outline btn--block">Contact Sales</a>
-        </div>
+  <div class="container">
+    <div class="section-header">
+      <div class="badge badge--dark">Pricing</div>
+      <h2 class="section-title">Simple Pricing for Small Bakeries</h2>
+      <p class="section-sub">
+        One affordable plan for home bakers and small bakery businesses.
+      </p>
+    </div>
+
+    <div class="plans plans--single">
+      <div class="plan plan--pro">
+        <div class="plan__badge">Launch Plan</div>
+        <div class="plan__name">CrumbSuite Pro</div>
+        <div class="plan__price">₹499<span>/mo</span></div>
+        <div class="plan__period">Simple monthly billing</div>
+
+        <ul class="plan__features">
+          <li>✓ Order management</li>
+          <li>✓ Multiple items per customer order</li>
+          <li>✓ Product-wise preparation status</li>
+          <li>✓ Customer history</li>
+          <li>✓ Payment tracking</li>
+          <li>✓ Daily sales overview</li>
+          <li>✓ Cloud backup with Firebase</li>
+        </ul>
+
+        <a href="#download" class="btn btn--primary btn--block">
+          Join Early Access
+        </a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- ──────────────────────────────────────────
        DOWNLOAD CTA
@@ -383,7 +374,7 @@
   <section class="download" id="download">
     <div class="container">
       <div class="download__inner">
-        <div class="download__emoji">🥐</div>
+        <img src="icon-round.png" alt="CrumbSuite icon" class="download__logo" />
         <h2>Ready to Bake Smarter?</h2>
         <p>Join bakery owners who are running more organised, more profitable businesses with CrumbSuite.</p>
         <div class="download__badges">
@@ -413,9 +404,9 @@
         <h2>Get in Touch</h2>
         <p>Have a question, feature request or just want to say hi? We'd love to hear from you.</p>
         <div class="contact__items">
-          <a href="mailto:hello@crumbsuite.app" class="contact__item">
-            <span>📧</span> hello@crumbsuite.app
-          </a>
+          <a href="mailto:crumbsuite@gmail.com" class="contact__item">
+  <span>📧</span> crumbsuite@gmail.com
+</a>
           <a href="#" class="contact__item">
             <span>🐦</span> @CrumbSuiteApp
           </a>
@@ -443,7 +434,7 @@
     <div class="container footer__inner">
       <div class="footer__brand">
         <a href="#" class="nav__logo">
-          <span class="logo-icon">🥐</span>
+          <img src="icon-round.png" alt="CrumbSuite app icon" class="logo-icon" />
           <span class="logo-text">CrumbSuite</span>
         </a>
         <p>Bakery management, simplified.<br/>Built with ❤️ for bakers who mean business.</p>
