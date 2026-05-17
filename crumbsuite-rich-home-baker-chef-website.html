@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CrumbSuite – Home Baker & Chef Management App</title>
+  <meta name="description" content="CrumbSuite is an intuitive management app for home bakers, home chefs, cloud kitchens and small food businesses. Manage orders, customers, products, payments, delivery status and cloud backup from one place." />
+
+  <style>
+    :root {
+      --cream: #fffaf3;
+      --cream-2: #fff0dc;
+      --cream-3: #ffe2c4;
+      --brown: #4a2812;
+      --brown-2: #6b3d1d;
+      --orange: #f49a2e;
+      --orange-2: #ffbd73;
+      --peach: #ffd7b5;
+      --green: #6f9461;
+      --green-soft: #e7f2df;
+      --rose: #ffe7dd;
+      --text: #2b2018;
+      --muted: #79685c;
+      --white: #ffffff;
+      --line: rgba(74, 40, 18, 0.10);
+      --shadow: 0 22px 60px rgba(74, 40, 18, 0.16);
+      --soft-shadow: 0 14px 35px rgba(74, 40, 18, 0.09);
+      --radius: 28px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1160px, 92%);
+      margin: auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 250, 243, 0.86);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--brown);
+      letter-spacing: -0.5px;
+    }
+
+    .logo-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--orange), var(--orange-2));
+      color: var(--brown);
+      box-shadow: 0 10px 24px rgba(244, 154, 46, 0.35);
+    }
+
+    .logo span {
+      color: var(--orange);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 26px;
+      align-items: center;
+      font-weight: 700;
+      color: var(--brown);
+      font-size: 15px;
+    }
+
+    .nav-links a:hover {
+      color: var(--orange);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 22px;
+      border-radius: 999px;
+      background: var(--brown);
+      color: var(--white);
+      font-weight: 800;
+      box-shadow: 0 12px 28px rgba(74, 40, 18, 0.22);
+      transition: 0.22s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      background: #351b0b;
+    }
+
+    .btn-light {
+      background: var(--white);
+      color: var(--brown);
+      box-shadow: none;
+      border: 1px solid var(--line);
+    }
+
+    .hero {
+      position: relative;
+      padding: 88px 0 76px;
+      background:
+        radial-gradient(circle at 85% 8%, rgba(255, 189, 115, 0.55), transparent 30%),
+        radial-gradient(circle at 8% 22%, rgba(231, 242, 223, 0.9), transparent 28%),
+        linear-gradient(180deg, var(--cream), var(--cream-2));
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -90px;
+      bottom: -120px;
+      width: 330px;
+      height: 330px;
+      background: rgba(255, 215, 181, 0.45);
+      border-radius: 50%;
+      filter: blur(8px);
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 52px;
+      align-items: center;
+    }
+
+    .badge-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.84);
+      color: var(--brown);
+      font-weight: 800;
+      font-size: 14px;
+      border: 1px solid var(--line);
+      box-shadow: 0 8px 20px rgba(74, 40, 18, 0.06);
+    }
+
+    h1 {
+      font-size: clamp(43px, 6vw, 76px);
+      line-height: 1.01;
+      color: var(--brown);
+      margin-bottom: 24px;
+      letter-spacing: -2.2px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: var(--muted);
+      max-width: 650px;
+      margin-bottom: 32px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .trust-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      color: var(--brown-2);
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .trust-row span {
+      background: rgba(255, 255, 255, 0.65);
+      border: 1px solid var(--line);
+      padding: 9px 12px;
+      border-radius: 999px;
+    }
+
+    .phone-wrap {
+      position: relative;
+    }
+
+    .floating-card {
+      position: absolute;
+      z-index: 2;
+      background: var(--white);
+      border: 1px solid var(--line);
+      box-shadow: var(--soft-shadow);
+      border-radius: 20px;
+      padding: 14px 16px;
+      color: var(--brown);
+      font-weight: 800;
+    }
+
+    .floating-card small {
+      display: block;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .float-1 {
+      top: 36px;
+      left: -22px;
+    }
+
+    .float-2 {
+      bottom: 54px;
+      right: -18px;
+    }
+
+    .phone-card {
+      background: rgba(255, 255, 255, 0.76);
+      border-radius: 42px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+    }
+
+    .app-screen {
+      background: linear-gradient(180deg, #fff8ee, #ffffff);
+      border-radius: 32px;
+      padding: 24px;
+      min-height: 505px;
+      border: 1px solid var(--line);
+      overflow: hidden;
+    }
+
+    .screen-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .screen-top strong {
+      color: var(--brown);
+      font-size: 23px;
+      letter-spacing: -0.5px;
+    }
+
+    .pill {
+      background: var(--green-soft);
+      color: #3d6e2c;
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .stat {
+      background: var(--white);
+      padding: 18px;
+      border-radius: 22px;
+      box-shadow: 0 8px 22px rgba(74, 40, 18, 0.08);
+      border: 1px solid rgba(74, 40, 18, 0.06);
+    }
+
+    .stat small {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .stat h3 {
+      color: var(--brown);
+      font-size: 25px;
+      margin-top: 4px;
+    }
+
+    .order-card {
+      background: var(--brown);
+      color: var(--white);
+      padding: 18px;
+      border-radius: 24px;
+      margin-top: 14px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .order-card p {
+      color: #f7dcc6;
+      font-size: 14px;
+      margin: 5px 0 0;
+    }
+
+    .status {
+      white-space: nowrap;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    section {
+      padding: 82px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 46px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(32px, 4vw, 50px);
+      color: var(--brown);
+      line-height: 1.13;
+      margin-bottom: 14px;
+      letter-spacing: -1.2px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 28px;
+      border-radius: var(--radius);
+      box-shadow: var(--soft-shadow);
+      border: 1px solid var(--line);
+      transition: 0.22s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--cream-2), var(--peach));
+      display: grid;
+      place-items: center;
+      font-size: 25px;
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      color: var(--brown);
+      margin-bottom: 10px;
+      font-size: 21px;
+      letter-spacing: -0.3px;
+    }
+
+    .card p {
+      color: var(--muted);
+    }
+
+    .highlight {
+      background:
+        radial-gradient(circle at top left, rgba(255, 189, 115, 0.45), transparent 34%),
+        var(--white);
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .feature-panel {
+      background: var(--brown);
+      color: var(--white);
+      border-radius: 34px;
+      padding: 36px;
+      box-shadow: var(--shadow);
+    }
+
+    .feature-panel h2 {
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .feature-panel p {
+      color: #f4d9c1;
+      font-size: 18px;
+    }
+
+    .check-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .check-item {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: var(--soft-shadow);
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .check {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--green-soft);
+      color: #3d6e2c;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      font-weight: 900;
+    }
+
+    .check-item strong {
+      color: var(--brown);
+    }
+
+    .check-item p {
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    .who {
+      background: linear-gradient(180deg, var(--white), var(--cream));
+    }
+
+    .audience {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .audience span {
+      padding: 14px 20px;
+      border-radius: 999px;
+      background: var(--white);
+      color: var(--brown);
+      font-weight: 900;
+      border: 1px solid var(--line);
+      box-shadow: 0 8px 22px rgba(74, 40, 18, 0.06);
+    }
+
+    .pricing-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: stretch;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .pricing-card {
+      position: relative;
+      text-align: center;
+      background: var(--brown);
+      color: var(--white);
+      border-radius: 34px;
+      padding: 42px 30px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .pricing-card::before {
+      content: "";
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 220px;
+      height: 220px;
+      background: rgba(255, 189, 115, 0.23);
+      border-radius: 50%;
+    }
+
+    .pricing-card.light-price {
+      background: var(--white);
+      color: var(--brown);
+      border: 1px solid var(--line);
+    }
+
+    .offer {
+      display: inline-flex;
+      padding: 8px 13px;
+      background: var(--orange);
+      color: var(--brown);
+      border-radius: 999px;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .pricing-card h3 {
+      font-size: 28px;
+      margin-bottom: 12px;
+      position: relative;
+    }
+
+    .price {
+      font-size: 54px;
+      font-weight: 950;
+      margin: 18px 0 6px;
+      letter-spacing: -1.5px;
+      position: relative;
+    }
+
+    .price span {
+      font-size: 18px;
+      font-weight: 700;
+      color: #f1d5be;
+    }
+
+    .light-price .price span {
+      color: var(--muted);
+    }
+
+    .pricing-card p {
+      color: #f6dcc7;
+      margin-bottom: 22px;
+      position: relative;
+    }
+
+    .light-price p {
+      color: var(--muted);
+    }
+
+    .pricing-card ul {
+      list-style: none;
+      text-align: left;
+      max-width: 320px;
+      margin: 24px auto;
+      position: relative;
+    }
+
+    .pricing-card li {
+      margin: 12px 0;
+      color: #fff6ef;
+      font-weight: 700;
+    }
+
+    .light-price li {
+      color: var(--brown);
+    }
+
+    .cta {
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255,255,255,0.4), transparent 22%),
+        linear-gradient(135deg, var(--orange), var(--orange-2));
+      text-align: center;
+      color: var(--brown);
+    }
+
+    .cta h2 {
+      font-size: clamp(34px, 5vw, 56px);
+      line-height: 1.08;
+      margin-bottom: 18px;
+      letter-spacing: -1.4px;
+    }
+
+    .cta p {
+      font-size: 19px;
+      margin-bottom: 28px;
+      color: #5b3419;
+    }
+
+    .contact-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.6);
+      border: 1px solid rgba(74,40,18,0.12);
+      padding: 10px 16px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+      font-weight: 900;
+    }
+
+    footer {
+      padding: 34px 0;
+      background: #2d1a0d;
+      color: #f8dfc9;
+      text-align: center;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .split,
+      .pricing-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .cards {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .floating-card {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 56px;
+      }
+
+      .phone-card {
+        padding: 12px;
+        border-radius: 30px;
+      }
+
+      .app-screen {
+        min-height: auto;
+        padding: 18px;
+      }
+
+      .stat-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .order-card {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .price {
+        font-size: 46px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="#" class="logo">
+        <span class="logo-mark">🍰</span>
+        Crumb<span>Suite</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#backup">Cloud Backup</a>
+        <a href="#for">Who It’s For</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact" class="btn">Start Free Trial</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="badge-row">
+            <div class="badge">✨ 14 days free trial</div>
+            <div class="badge">☁️ Cloud backup included</div>
+            <div class="badge">👩‍🍳 For home food creators</div>
+          </div>
+
+          <h1>Manage your home food business beautifully.</h1>
+          <p>
+            CrumbSuite helps home bakers and home chefs manage orders, customers,
+            products, payments, delivery status and cloud backup — all from one
+            simple, intuitive app.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#contact" class="btn">Start 14 Days Free</a>
+            <a href="#features" class="btn btn-light">Explore Features</a>
+          </div>
+
+          <div class="trust-row">
+            <span>No confusion</span>
+            <span>Simple dashboard</span>
+            <span>Made for daily orders</span>
+          </div>
+        </div>
+
+        <div class="phone-wrap">
+          <div class="floating-card float-1">
+            ₹8,420
+            <small>This week’s sales</small>
+          </div>
+
+          <div class="floating-card float-2">
+            Cloud Backup On
+            <small>Your data stays safe</small>
+          </div>
+
+          <div class="phone-card">
+            <div class="app-screen">
+              <div class="screen-top">
+                <strong>Business Today</strong>
+                <span class="pill">Synced</span>
+              </div>
+
+              <div class="stat-grid">
+                <div class="stat">
+                  <small>Revenue</small>
+                  <h3>₹4,250</h3>
+                </div>
+                <div class="stat">
+                  <small>Orders</small>
+                  <h3>5</h3>
+                </div>
+                <div class="stat">
+                  <small>Customers</small>
+                  <h3>18</h3>
+                </div>
+                <div class="stat">
+                  <small>Pending</small>
+                  <h3>3</h3>
+                </div>
+              </div>
+
+              <div class="order-card">
+                <div>
+                  <strong>Chocolate Truffle Cake</strong>
+                  <p>Anjali · Delivery at 6:00 PM</p>
+                </div>
+                <span class="status">Paid</span>
+              </div>
+
+              <div class="order-card" style="background:#6f9461;">
+                <div>
+                  <strong>Veg Meal Box</strong>
+                  <p>Rahul · Payment pending</p>
+                </div>
+                <span class="status">Pending</span>
+              </div>
+
+              <div class="order-card" style="background:#f49a2e;color:#4a2812;">
+                <div>
+                  <strong>Custom Cupcakes</strong>
+                  <p style="color:#5b3419;">Neha · Pickup tomorrow</p>
+                </div>
+                <span class="status" style="background:rgba(255,255,255,0.35);border-color:rgba(74,40,18,0.12);">New</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="container">
+        <div class="section-title">
+          <h2>Everything you need to stay organized</h2>
+          <p>Designed to feel simple from day one, even if you are managing your business alone.</p>
+        </div>
+
+        <div class="cards">
+          <div class="card">
+            <div class="icon">🧾</div>
+            <h3>Order Management</h3>
+            <p>Track new, pending, completed, pickup and delivery orders in one clean view.</p>
+          </div>
+
+          <div class="card">
+            <div class="icon">👩‍🍳</div>
+            <h3>Customer Records</h3>
+            <p>Save customer details, order history, preferences and special notes easily.</p>
+          </div>
+
+          <div class="card">
+            <div class="icon">🍰</div>
+            <h3>Product Catalogue</h3>
+            <p>Organize cakes, desserts, meals, snacks and custom items with pricing.</p>
+          </div>
+
+          <div class="card">
+            <div class="icon">💰</div>
+            <h3>Payment Tracking</h3>
+            <p>Know what is paid, pending or partially paid without checking notebooks.</p>
+          </div>
+
+          <div class="card">
+            <div class="icon">🚚</div>
+            <h3>Delivery Status</h3>
+            <p>Track pickup time, delivery time and order status for every customer.</p>
+          </div>
+
+          <div class="card">
+            <div class="icon">📊</div>
+            <h3>Business Summary</h3>
+            <p>View simple daily and monthly summaries to understand your business better.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="backup" class="highlight">
+      <div class="container split">
+        <div class="feature-panel">
+          <h2>Your business data stays safe with cloud backup.</h2>
+          <p>
+            Orders, customers, products and payment records are important.
+            CrumbSuite helps keep your business data backed up securely in the cloud.
+          </p>
+        </div>
+
+        <div class="check-list">
+          <div class="check-item">
+            <div class="check">✓</div>
+            <div>
+              <strong>Cloud backup included</strong>
+              <p>Keep your important business records safer and easier to access.</p>
+            </div>
+          </div>
+
+          <div class="check-item">
+            <div class="check">✓</div>
+            <div>
+              <strong>Less manual work</strong>
+              <p>No more depending only on notebooks, screenshots or scattered messages.</p>
+            </div>
+          </div>
+
+          <div class="check-item">
+            <div class="check">✓</div>
+            <div>
+              <strong>Built for real daily use</strong>
+              <p>Simple screens, clear actions and an intuitive flow for busy creators.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="for" class="who">
+      <div class="container">
+        <div class="section-title">
+          <h2>Built for passionate home food creators</h2>
+          <p>Whether you bake cakes or prepare homemade meals, CrumbSuite keeps your business organized.</p>
+        </div>
+
+        <div class="audience">
+          <span>Home Bakers</span>
+          <span>Home Chefs</span>
+          <span>Cake Artists</span>
+          <span>Dessert Sellers</span>
+          <span>Cloud Kitchens</span>
+          <span>Small Food Businesses</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <div class="container">
+        <div class="section-title">
+          <h2>Simple pricing with a free trial</h2>
+          <p>Try CrumbSuite free for 14 days. Continue only when it works for your business.</p>
+        </div>
+
+        <div class="pricing-wrap">
+          <div class="pricing-card light-price">
+            <span class="offer">14 Days Free Trial</span>
+            <h3>Start Free</h3>
+            <div class="price">₹0 <span>/ 14 days</span></div>
+            <p>Explore the app before subscribing.</p>
+
+            <ul>
+              <li>✓ Try order management</li>
+              <li>✓ Add customers and products</li>
+              <li>✓ Test daily workflow</li>
+              <li>✓ Cloud backup support</li>
+            </ul>
+
+            <a href="#contact" class="btn">Start Free Trial</a>
+          </div>
+
+          <div class="pricing-card">
+            <span class="offer">Best Value</span>
+            <h3>CrumbSuite Plan</h3>
+            <div class="price">₹499 <span>/ month</span></div>
+            <p>Or ₹4,990 per year with 2 months free.</p>
+
+            <ul>
+              <li>✓ Order management</li>
+              <li>✓ Customer management</li>
+              <li>✓ Product catalogue</li>
+              <li>✓ Payment tracking</li>
+              <li>✓ Business dashboard</li>
+              <li>✓ Cloud backup included</li>
+            </ul>
+
+            <a href="#contact" class="btn btn-light">Subscribe Now</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="cta">
+      <div class="container">
+        <div class="contact-box">📩 crumbsuite@gmail.com</div>
+        <h2>Start managing your food business better today.</h2>
+        <p>CrumbSuite is made for home bakers and home chefs who want to stay organized and grow with confidence.</p>
+        <a href="mailto:crumbsuite@gmail.com" class="btn">Contact Us</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 CrumbSuite • crumbsuite@gmail.com • Made for passionate home food creators.</p>
+    </div>
+  </footer>
+</body>
+</html>
