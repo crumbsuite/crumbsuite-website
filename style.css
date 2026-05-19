@@ -115,6 +115,17 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .btn--lg  { padding: 15px 32px; font-size: 1rem; }
 .btn--block { width: 100%; justify-content: center; }
 
+.btn__icon {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+.btn__icon-img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  display: inline-block;
+}
+
 /* ──────────────────────────────────────────
    BADGE
 ────────────────────────────────────────── */
@@ -166,7 +177,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(45,27,20,.2);
 }
-.logo-text  { font-family: var(--font-display); letter-spacing: -.01em; }
+.logo-text  { font-family: var(--font-body); font-size: 1.28rem; font-weight: 700; letter-spacing: -.01em; }
 
 .nav__links {
   display: flex;
@@ -299,7 +310,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   padding-top: 8px;
 }
 .stat { text-align: center; }
-.stat__num   { display: block; font-size: 1.6rem; font-weight: 700; color: #fff; }
+.stat__num   { display: block; font-size: 2.6rem; font-weight: 800; color: #fff; }
 .stat__label { display: block; font-size: .78rem; color: rgba(255,255,255,.55); text-transform: uppercase; letter-spacing: .06em; }
 .stat__divider { width: 1px; height: 40px; background: rgba(255,255,255,.2); }
 
@@ -333,6 +344,20 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   overflow: hidden;
   padding: 28px 16px 16px;
   min-height: 440px;
+}
+.phone-screen--img {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.phone-screenshot {
+  width: 100%;
+  height: 100%;
+  min-height: 440px;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 28px;
+  display: block;
 }
 
 /* Mock UI inside phone */
@@ -620,7 +645,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   color: #fff;
   border-color: transparent;
 }
-.testimonial-card--featured p { color: rgba(255,255,255,.8); }
+/* Keep featured quote text readable over dark background. */
+.testimonial-card.testimonial-card--featured p { color: rgba(255,255,255,.85); }
 .testimonial-card--featured .author-name { color: #fff; }
 .testimonial-card--featured .author-role { color: rgba(255,255,255,.5); }
 .testimonial-card--featured .stars { color: #FFB300; }
@@ -702,8 +728,9 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   letter-spacing: .06em;
 }
 .plan__name   { font-weight: 700; color: var(--clr-muted); text-transform: uppercase; font-size: .8rem; letter-spacing: .08em; }
-.plan__price  { font-size: 2.6rem; font-weight: 800; color: var(--clr-dark); line-height: 1; }
-.plan__price span { font-size: 1rem; font-weight: 500; color: var(--clr-muted); }
+.plan__price  { font-size: 2.6rem; font-weight: 800; color: var(--clr-dark); line-height: 1.1; display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px; }
+.plan__price > span:first-child { font-size: inherit; font-weight: inherit; color: inherit; }
+.plan__price .plan__cycle { font-size: 0.95rem; font-weight: 500; color: var(--clr-muted); }
 .plan__period { font-size: .85rem; color: var(--clr-muted); }
 
 .plan__features { display: flex; flex-direction: column; gap: 10px; margin-block: 8px 8px; flex: 1; }
@@ -789,6 +816,13 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   color: #fff;
 }
 .store-badge:hover { background: rgba(255,255,255,.18); transform: translateY(-2px); }
+.store-badge__icon { font-size: 1.5rem; line-height: 1; }
+.store-badge__icon-img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  display: inline-block;
+}
 .store-badge__sub  { font-size: .72rem; opacity: .7; }
 .store-badge__name { font-size: 1.1rem; font-weight: 700; }
 
@@ -929,4 +963,3 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   opacity: 1;
   transform: none;
 }
-
