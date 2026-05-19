@@ -54,16 +54,30 @@ const contactForm = document.getElementById('contactForm');
 if (contactForm) {
   contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    const btn = contactForm.querySelector('button');
-    btn.textContent = '✓ Message Sent!';
-    btn.style.background = '#4CAF50';
-    btn.disabled = true;
+
+    const name = document.getElementById('contactName')?.value?.trim() || '';
+    const email = document.getElementById('contactEmail')?.value?.trim() || '';
+    const message = document.getElementById('contactMessage')?.value?.trim() || '';
+
+    const subject = encodeURIComponent('CrumbSuite Website Enquiry');
+    const body = encodeURIComponent(
+      `Hi CrumbSuite Team,\n\n` +
+      `${message}\n\n` +
+      `Name: ${name}\n` +
+      `Email: ${email}\n\n` +
+      `Thanks`
+    );
+
+    const mailtoUrl = `mailto:crumbsuite@gmail.com?subject=${subject}&body=${body}`;
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=crumbsuite@gmail.com&su=${subject}&body=${body}`;
+
+    window.location.assign(mailtoUrl);
+
     setTimeout(() => {
-      btn.textContent = 'Send Message';
-      btn.style.background = '';
-      btn.disabled = false;
-      contactForm.reset();
-    }, 3000);
+      if (document.visibilityState === 'visible') {
+        window.location.href = gmailUrl;
+      }
+    }, 900);
   });
 }
 
