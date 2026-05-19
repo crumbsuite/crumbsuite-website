@@ -595,17 +595,18 @@
           </a>
         </div>
       </div>
-      <form class="contact-form" id="contactForm">
+      <form class="contact-form" id="contactForm" action="mailto:crumbsuite@gmail.com" method="post" enctype="text/plain">
         <div class="form-group">
-          <input type="text" placeholder="Your Name" required class="form-input" id="contactName" aria-label="Your name" />
+          <input type="text" name="name" placeholder="Your Name" required class="form-input" id="contactName" aria-label="Your name" />
         </div>
         <div class="form-group">
-          <input type="email" placeholder="Email Address" required class="form-input" id="contactEmail" aria-label="Email address" />
+          <input type="email" name="email" placeholder="Email Address" required class="form-input" id="contactEmail" aria-label="Email address" />
         </div>
         <div class="form-group">
-          <textarea placeholder="Your message…" rows="5" required class="form-input" id="contactMessage" aria-label="Your message"></textarea>
+          <textarea name="message" placeholder="Your message…" rows="5" required class="form-input" id="contactMessage" aria-label="Your message"></textarea>
         </div>
-        <button type="submit" class="btn btn--primary btn--block">Send Message</button>
+        <button type="submit" class="btn btn--primary btn--block">Open Email App</button>
+        <a href="mailto:crumbsuite@gmail.com?subject=CrumbSuite%20Website%20Enquiry" class="btn btn--outline btn--block">Email us directly</a>
       </form>
     </div>
   </section>
@@ -652,6 +653,6 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=20260519-contact"></script>
 </body>
 </html>
