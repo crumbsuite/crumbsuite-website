@@ -24,7 +24,7 @@
   --transition:   .25s cubic-bezier(.4,0,.2,1);
 }
 
-html { scroll-behavior: smooth; font-size: 16px; }
+html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
 
 body {
   font-family: var(--font-body);
@@ -38,6 +38,8 @@ img { display: block; max-width: 100%; }
 a  { color: inherit; text-decoration: none; }
 ul { list-style: none; }
 button { cursor: pointer; border: none; background: none; font: inherit; }
+
+main, section, header, footer, .container { min-width: 0; }
 
 .container {
   width: 100%;
@@ -283,6 +285,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   z-index: 1;
 }
 .hero__text { display: flex; flex-direction: column; gap: 24px; }
+.hero__text, .hero__mockup, .feature-card, .update-card, .testimonial-card, .plan, .demo__copy, .demo-form, .contact__info, .contact-form { min-width: 0; }
 
 .hero__headline {
   font-family: var(--font-display);
@@ -894,6 +897,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 ────────────────────────────────────────── */
 .footer { background: #2A1811; color: rgba(255,255,255,.66); padding-top: 64px; }
 .footer__inner { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 48px; }
+.footer__links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; grid-column: span 3; }
 .footer__brand .nav__logo { color: #fff; margin-bottom: 12px; }
 .footer__brand p { font-size: .9rem; line-height: 1.7; }
 .footer__col h4 { color: #fff; font-size: .85rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 16px; }
@@ -905,20 +909,66 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
    RESPONSIVE
 ────────────────────────────────────────── */
 @media (max-width: 1024px) {
+  .container { max-width: 920px; }
+  .nav__inner { gap: 18px; }
+  .nav__links { gap: 16px; }
+  .hero__inner { gap: 42px; }
   .features__grid { grid-template-columns: 1fr 1fr; }
   .feature-card--wide { grid-column: span 2; }
   .updates__grid { grid-template-columns: 1fr 1fr; }
   .demo__inner { grid-template-columns: 1fr; }
-  .footer__inner { grid-template-columns: 1fr 1fr; }
+  .footer__inner { grid-template-columns: 1fr; }
+  .footer__links { grid-column: auto; }
 }
 
 @media (max-width: 768px) {
+  html { font-size: 15px; }
+  .container { padding-inline: 18px; }
+
   .nav__links, .nav__cta { display: none; }
   .nav__burger { display: flex; }
+  .drawer { padding-inline: 18px; }
+
+  .section-header { margin-bottom: 38px; }
+  .section-sub { font-size: 1rem; }
+
+  .hero, .features, .updates, .how, .testimonials, .pricing, .demo, .download, .contact, .screens {
+    padding-block: 64px;
+  }
 
   .hero__inner { grid-template-columns: 1fr; }
-  .hero__mockup { order: -1; }
+  .hero__text { align-items: center; text-align: center; width: 100%; max-width: 100%; }
+  .hero__headline { max-width: 100%; overflow-wrap: normal; }
+  .hero__headline br { display: none; }
+  .hero__sub { max-width: 620px; }
+  .hero__mockup {
+    order: 2;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    transform: scale(.94);
+    transform-origin: center;
+  }
   .float-badge--1, .float-badge--2 { display: none; }
+  .badge { max-width: 100%; white-space: normal; }
+
+  .hero__actions { justify-content: center; }
+  .hero__stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    width: 100%;
+    max-width: 520px;
+  }
+  .stat {
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 16px;
+    padding: 12px 8px;
+  }
+  .stat__num { font-size: clamp(1.35rem, 6vw, 2rem); }
+  .stat__label { font-size: .68rem; }
+  .stat__divider { display: none; }
 
   .features__grid { grid-template-columns: 1fr; }
   .feature-card--wide { grid-column: span 1; }
@@ -932,7 +982,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   .testimonials__grid { grid-template-columns: 1fr; }
   .plans { grid-template-columns: 1fr; }
   .contact__inner { grid-template-columns: 1fr; }
-  .footer__inner { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .footer__inner { grid-template-columns: 1fr; gap: 32px; }
+  .footer__links { grid-template-columns: 1fr 1fr; gap: 26px; }
 
   .pricing-toggle {
     width: 100%;
@@ -942,13 +993,57 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
     transform: none;
   }
 
-  .hero__stats { gap: 16px; }
+  .demo__inner, .contact__inner { gap: 28px; }
+  .contact__item { overflow-wrap: anywhere; }
 }
 
 @media (max-width: 480px) {
+  .container { padding-inline: 16px; }
+  .nav__inner { height: 62px; }
+  .drawer { top: 62px; }
+  .logo-text { font-size: 1.08rem; }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .hero, .features, .updates, .how, .testimonials, .pricing, .demo, .download, .contact, .screens {
+    padding-block: 52px;
+  }
+
+  .hero__headline { font-size: clamp(2rem, 10.5vw, 2.7rem); line-height: 1.05; }
+  .hero__mockup { transform: none; }
+  .phone-frame { width: min(238px, calc(100vw - 56px)); border-radius: 34px; padding: 12px; }
+  .phone-screen { min-height: 390px; border-radius: 24px; }
+  .phone-screenshot { min-height: 390px; border-radius: 24px; }
+
+  .hero__stats { grid-template-columns: 1fr; }
+  .stat { display: flex; align-items: center; justify-content: space-between; gap: 12px; text-align: left; }
+  .stat__num { font-size: 1.35rem; }
+  .stat__label { text-align: right; }
+
+  .screen-card { padding: 14px; }
+  .screen-card__media { height: 220px; }
+  .feature-card, .update-card, .testimonial-card, .plan, .demo-form { padding: 22px; }
+  .plan__price { font-size: 2.1rem; }
+
+  .notify-form { flex-direction: column; }
+  .notify-input { min-width: 0; width: 100%; }
+
   .footer__inner { grid-template-columns: 1fr; }
+  .footer__links { grid-template-columns: 1fr; }
   .hero__actions { flex-direction: column; }
   .hero__actions .btn { justify-content: center; }
+}
+
+@media (max-width: 360px) {
+  .container { padding-inline: 14px; }
+  .phone-frame { width: min(224px, 82vw); }
+  .phone-screen, .phone-screenshot { min-height: 360px; }
+  .feature-card, .update-card, .testimonial-card, .plan, .demo-form { padding: 18px; }
 }
 
 /* ──────────────────────────────────────────
